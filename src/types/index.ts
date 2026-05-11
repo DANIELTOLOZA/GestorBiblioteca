@@ -88,6 +88,7 @@ export interface Page<T> {
 }
 
 export interface AuthData {
+  id: number;
   token: string;
   email: string;
   name: string;
