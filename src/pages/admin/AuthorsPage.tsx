@@ -112,7 +112,11 @@ export default function AuthorsPage() {
                   className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 resize-none" />
               </div>
               {saveMutation.isError && (
-                <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">Error al guardar. Verifica los datos.</p>
+                <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">
+                  {(saveMutation.error as {code?:string})?.code === 'ERR_NETWORK'
+                    ? 'Modo demo: backend no disponible. Los autores son de solo lectura en este entorno.'
+                    : 'Error al guardar. Verifica los datos e intenta de nuevo.'}
+                </p>
               )}
               <div className="flex gap-3 pt-2">
                 <button type="button" onClick={() => setShowModal(false)}

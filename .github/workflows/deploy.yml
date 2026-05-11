@@ -23,6 +23,7 @@ jobs:
       - run: npm run build
         env:
           NODE_ENV: production
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
 
       - uses: peaceiris/actions-gh-pages@v4
         with:

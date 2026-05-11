@@ -134,7 +134,11 @@ export default function CategoriesPage() {
                 <p className="text-xs text-gray-400 mt-1">Sistema decimal de clasificacion bibliografica</p>
               </div>
               {saveMutation.isError && (
-                <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">Error al guardar. Verifica los datos.</p>
+                <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">
+                  {(saveMutation.error as {code?:string})?.code === 'ERR_NETWORK'
+                    ? 'Modo demo: backend no disponible. Las categorias son de solo lectura en este entorno.'
+                    : 'Error al guardar. El nombre ya existe o los datos son invalidos.'}
+                </p>
               )}
               <div className="flex gap-3 pt-2">
                 <button type="button" onClick={() => setShowModal(false)}
