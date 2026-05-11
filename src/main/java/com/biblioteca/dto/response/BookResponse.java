@@ -1,4 +1,4 @@
-﻿package com.biblioteca.dto.response;
+package com.biblioteca.dto.response;
 import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.List;

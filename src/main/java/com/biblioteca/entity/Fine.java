@@ -1,4 +1,4 @@
-﻿package com.biblioteca.entity;
+package com.biblioteca.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,7 +23,6 @@ public class Fine {
     @Column(nullable = false)
     @Builder.Default
     private boolean paid = false;
-    @Column(name = "created_at")
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 }

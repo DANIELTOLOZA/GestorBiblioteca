@@ -1,4 +1,4 @@
-﻿package com.biblioteca.repository;
+package com.biblioteca.repository;
 
 import com.biblioteca.entity.Book;
 import org.springframework.data.domain.Page;

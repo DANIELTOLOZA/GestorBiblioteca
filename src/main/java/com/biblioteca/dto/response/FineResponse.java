@@ -1,4 +1,4 @@
-﻿package com.biblioteca.dto.response;
+package com.biblioteca.dto.response;
 import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

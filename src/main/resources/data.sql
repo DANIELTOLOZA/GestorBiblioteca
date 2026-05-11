@@ -1,4 +1,4 @@
-﻿-- Categorias
+-- Categorias
 INSERT INTO categories (name, description, dewey_code) VALUES
   ('Literatura', 'Novelas, cuentos y poesia', '800'),
   ('Ciencias', 'Matematicas, fisica, quimica', '500'),
@@ -16,12 +16,12 @@ INSERT INTO authors (name, bio) VALUES
   ('Isabel Allende', 'Escritora chilena, autora de La Casa de los Espiritus')
 ON CONFLICT DO NOTHING;
 
--- Usuarios (password: password)
+-- Usuarios (password: password) - BCrypt hash de "password"
 INSERT INTO users (name, email, password, role, active) VALUES
-  ('Administrador', 'admin@biblioteca.com', '\\\.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ADMIN', true),
-  ('Bibliotecario', 'librarian@biblioteca.com', '\\\.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'LIBRARIAN', true),
-  ('Juan Lector', 'reader@biblioteca.com', '\\\.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'READER', true)
-ON CONFLICT DO NOTHING;
+  ('Administrador', 'admin@biblioteca.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ADMIN', true),
+  ('Bibliotecario', 'librarian@biblioteca.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'LIBRARIAN', true),
+  ('Juan Lector', 'reader@biblioteca.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'READER', true)
+ON CONFLICT (email) DO UPDATE SET password = EXCLUDED.password;
 
 -- Libros
 INSERT INTO books (title, isbn, description, total_copies, available_copies, published_year, category_id) VALUES

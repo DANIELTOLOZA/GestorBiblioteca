@@ -1,4 +1,4 @@
-﻿package com.biblioteca.security;
+package com.biblioteca.security;
 
 import com.biblioteca.entity.User;
 import com.biblioteca.repository.UserRepository;

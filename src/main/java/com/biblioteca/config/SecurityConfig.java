@@ -1,4 +1,4 @@
-﻿package com.biblioteca.config;
+package com.biblioteca.config;
 
 import com.biblioteca.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-﻿package com.biblioteca.entity;
+package com.biblioteca.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,18 +17,16 @@ public class Loan {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;
-    @Column(name = "loan_date", nullable = false)
+    @Column(nullable = false)
     @Builder.Default
     private LocalDate loanDate = LocalDate.now();
-    @Column(name = "due_date", nullable = false)
+    @Column(nullable = false)
     private LocalDate dueDate;
-    @Column(name = "return_date")
     private LocalDate returnDate;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @Builder.Default
     private LoanStatus status = LoanStatus.ACTIVE;
-    @Column(name = "created_at")
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 }

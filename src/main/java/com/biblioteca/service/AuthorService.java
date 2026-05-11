@@ -1,4 +1,4 @@
-﻿package com.biblioteca.service;
+package com.biblioteca.service;
 
 import com.biblioteca.dto.request.AuthorRequest;
 import com.biblioteca.dto.response.AuthorResponse;

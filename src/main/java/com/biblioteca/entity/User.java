@@ -1,4 +1,4 @@
-﻿package com.biblioteca.entity;
+package com.biblioteca.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,7 +22,6 @@ public class User {
     @Column(nullable = false)
     @Builder.Default
     private boolean active = true;
-    @Column(name = "created_at")
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 }

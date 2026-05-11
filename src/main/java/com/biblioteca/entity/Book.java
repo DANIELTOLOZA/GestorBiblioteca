@@ -1,4 +1,4 @@
-﻿package com.biblioteca.entity;
+package com.biblioteca.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,15 +18,13 @@ public class Book {
     private String isbn;
     @Column(columnDefinition = "TEXT")
     private String description;
-    @Column(name = "total_copies", nullable = false)
+    @Column(nullable = false)
     @Builder.Default
     private int totalCopies = 1;
-    @Column(name = "available_copies", nullable = false)
+    @Column(nullable = false)
     @Builder.Default
     private int availableCopies = 1;
-    @Column(name = "published_year")
     private Integer publishedYear;
-    @Column(name = "cover_url")
     private String coverUrl;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
@@ -39,7 +37,6 @@ public class Book {
     )
     @Builder.Default
     private Set<Author> authors = new HashSet<>();
-    @Column(name = "created_at")
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 }

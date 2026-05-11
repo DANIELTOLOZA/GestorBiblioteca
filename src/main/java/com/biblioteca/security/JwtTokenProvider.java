@@ -1,4 +1,4 @@
-﻿package com.biblioteca.security;
+package com.biblioteca.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
