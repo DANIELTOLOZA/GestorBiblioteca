@@ -19,7 +19,7 @@ export default function MyReservationsPage() {
     <div className="space-y-5">
       <h1 className="text-2xl font-bold text-gray-900">Mis Reservas</h1>
       <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-        {isLoading ? <div className="flex justify-center py-12"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600" /></div> :
+        {isLoading ? <div className="flex justify-center py-12"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-violet-600" /></div> :
           data?.content.length === 0 ? <div className="text-center py-16 text-gray-400"><p className="text-lg">No tienes reservas activas</p></div> : (
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">

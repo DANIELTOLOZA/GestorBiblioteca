@@ -1,7 +1,6 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Library } from 'lucide-react';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -32,37 +31,39 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-900 to-sky-700 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-violet-950 via-violet-900 to-purple-900 px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full overflow-hidden border-4 border-white/30 mb-4 shadow-xl">
-            <img src="/lady-labrynth.jpg" alt="Labrynth Book" className="w-full h-full object-cover object-top" />
+          <div className="inline-flex items-center justify-center w-28 h-28 rounded-full overflow-hidden border-4 border-amber-400/60 mb-4 shadow-2xl shadow-violet-950">
+            <img src={`${import.meta.env.BASE_URL}lovely-labrynth.jpg`} alt="Lovely Labrynth" className="w-full h-full object-cover object-top" />
           </div>
-          <h1 className="text-3xl font-bold text-white">Labrynth Book</h1>
-          <p className="text-sky-200 mt-1">Ingresa tus credenciales para continuar</p>
+          <h1 className="text-4xl font-bold text-white tracking-tight">Labrynth Book</h1>
+          <p className="text-violet-300 mt-2 text-sm">Ingresa tus credenciales para continuar</p>
         </div>
-        <div className="bg-white rounded-2xl shadow-xl p-8">
+
+        <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl shadow-2xl p-8">
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Correo electronico</label>
+              <label className="block text-sm font-medium text-violet-200 mb-1">Correo electronico</label>
               <input type="email" value={email} onChange={e => setEmail(e.target.value)} required
                 placeholder="admin@biblioteca.com"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm" />
+                className="w-full px-4 py-2.5 bg-white/10 border border-violet-600/50 text-white placeholder-violet-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent text-sm" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Contrasena</label>
+              <label className="block text-sm font-medium text-violet-200 mb-1">Contrasena</label>
               <input type="password" value={password} onChange={e => setPassword(e.target.value)} required
                 placeholder="••••••••"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm" />
+                className="w-full px-4 py-2.5 bg-white/10 border border-violet-600/50 text-white placeholder-violet-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent text-sm" />
             </div>
-            {error && <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">{error}</p>}
+            {error && <p className="text-sm text-red-300 bg-red-900/30 border border-red-500/30 px-3 py-2 rounded-lg">{error}</p>}
             <button type="submit" disabled={loading}
-              className="w-full py-2.5 px-4 bg-sky-600 hover:bg-sky-700 text-white font-semibold rounded-lg transition-colors disabled:opacity-60">
+              className="w-full py-2.5 px-4 bg-amber-500 hover:bg-amber-400 text-violet-950 font-bold rounded-lg transition-colors disabled:opacity-60 shadow-lg shadow-amber-500/20">
               {loading ? 'Ingresando...' : 'Iniciar sesion'}
             </button>
           </form>
-          <div className="mt-6 p-4 bg-gray-50 rounded-lg text-xs text-gray-500 space-y-1">
-            <p className="font-semibold text-gray-600">Cuentas de prueba (password: password)</p>
+
+          <div className="mt-6 p-4 bg-white/5 border border-violet-700/30 rounded-lg text-xs text-violet-300 space-y-1">
+            <p className="font-semibold text-violet-200">Cuentas de prueba (password: password)</p>
             <p>Admin: admin@biblioteca.com</p>
             <p>Bibliotecario: librarian@biblioteca.com</p>
             <p>Lector: reader@biblioteca.com</p>

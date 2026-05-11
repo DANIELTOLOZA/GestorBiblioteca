@@ -1,4 +1,4 @@
-﻿import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import {
   LayoutDashboard, BookOpen, Users, BookMarked,
@@ -37,32 +37,46 @@ export default function Sidebar() {
   const handleLogout = () => { logout(); navigate('/login'); };
 
   return (
-    <aside className="flex flex-col w-64 min-h-screen bg-sky-900 text-white">
-      <div className="flex items-center gap-3 px-4 py-4 border-b border-sky-800">
-        <img src="/lady-labrynth.jpg" alt="Labrynth Book" className="h-10 w-10 rounded-full object-cover object-top border-2 border-sky-400" />
-        <span className="text-xl font-bold tracking-tight">Labrynth Book</span>
+    <aside className="flex flex-col w-64 min-h-screen bg-violet-950 text-white border-r border-violet-800/40">
+      <div className="flex items-center gap-3 px-4 py-5 border-b border-violet-800/50">
+        <div className="relative">
+          <img
+            src={`${import.meta.env.BASE_URL}lovely-labrynth.jpg`}
+            alt="Lovely Labrynth"
+            className="h-11 w-11 rounded-full object-cover object-top border-2 border-amber-400/70 shadow-lg shadow-amber-400/20"
+          />
+          <div className="absolute inset-0 rounded-full ring-2 ring-amber-400/20" />
+        </div>
+        <span className="text-lg font-bold tracking-tight text-amber-200">Labrynth Book</span>
       </div>
-      <div className="px-4 py-4 border-b border-sky-800">
-        <p className="text-xs text-sky-400 uppercase tracking-wider">Bienvenido</p>
-        <p className="font-semibold truncate">{user?.name}</p>
-        <span className="text-xs bg-sky-700 text-sky-200 px-2 py-0.5 rounded-full">{user?.role}</span>
+
+      <div className="px-4 py-4 border-b border-violet-800/50">
+        <p className="text-xs text-violet-400 uppercase tracking-wider mb-1">Bienvenido</p>
+        <p className="font-semibold text-white truncate">{user?.name}</p>
+        <span className="inline-block text-xs bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-full mt-1">
+          {user?.role}
+        </span>
       </div>
-      <nav className="flex-1 px-3 py-4 space-y-1">
+
+      <nav className="flex-1 px-3 py-4 space-y-0.5">
         {links.map(({ to, icon: Icon, label }) => (
           <NavLink key={to} to={to}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                isActive ? 'bg-sky-700 text-white' : 'text-sky-200 hover:bg-sky-800 hover:text-white'
+              `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                isActive
+                  ? 'bg-amber-500/15 text-amber-300 border-l-2 border-amber-400 pl-[10px]'
+                  : 'text-violet-300 hover:bg-violet-800/60 hover:text-white border-l-2 border-transparent'
               }`
             }>
-            <Icon className="h-5 w-5" />
+            <Icon className="h-5 w-5 flex-shrink-0" />
             {label}
           </NavLink>
         ))}
       </nav>
-      <div className="p-4 border-t border-sky-800">
+
+      <div className="p-4 border-t border-violet-800/50">
         <button onClick={handleLogout}
-          className="flex items-center gap-2 w-full px-3 py-2 text-sm text-sky-200 hover:text-white hover:bg-sky-800 rounded-lg transition-colors">
+          className="flex items-center gap-2 w-full px-3 py-2 text-sm text-violet-300 hover:text-amber-300 hover:bg-violet-800/60 rounded-lg transition-colors">
           <LogOut className="h-4 w-4" />
           Cerrar sesion
         </button>

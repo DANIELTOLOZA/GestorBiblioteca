@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getMyLoans } from '../../api/loansApi';
 
 const statusBadge = (status: string) => {
-  const map: Record<string, string> = { ACTIVE: 'bg-sky-100 text-sky-700', RETURNED: 'bg-emerald-100 text-emerald-700', OVERDUE: 'bg-red-100 text-red-700' };
+  const map: Record<string, string> = { ACTIVE: 'bg-violet-100 text-violet-700', RETURNED: 'bg-emerald-100 text-emerald-700', OVERDUE: 'bg-red-100 text-red-700' };
   const labels: Record<string, string> = { ACTIVE: 'Activo', RETURNED: 'Devuelto', OVERDUE: 'Vencido' };
   return <span className={`px-2 py-0.5 text-xs rounded-full font-medium ${map[status]}`}>{labels[status] ?? status}</span>;
 };
@@ -16,7 +16,7 @@ export default function MyLoansPage() {
     <div className="space-y-5">
       <h1 className="text-2xl font-bold text-gray-900">Mis Prestamos</h1>
       <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-        {isLoading ? <div className="flex justify-center py-12"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600" /></div> :
+        {isLoading ? <div className="flex justify-center py-12"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-violet-600" /></div> :
           data?.content.length === 0 ? <div className="text-center py-16 text-gray-400"><p className="text-lg">No tienes prestamos activos</p></div> : (
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">

@@ -17,13 +17,13 @@ export default function FinesPage() {
       <div className="flex gap-3">
         {[undefined, false, true].map(v => (
           <button key={String(v)} onClick={() => { setPaidFilter(v); setPage(0); }}
-            className={`px-3 py-1.5 text-sm rounded-lg font-medium transition-colors ${paidFilter === v ? 'bg-sky-600 text-white' : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'}`}>
+            className={`px-3 py-1.5 text-sm rounded-lg font-medium transition-colors ${paidFilter === v ? 'bg-violet-600 text-white' : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'}`}>
             {v === undefined ? 'Todas' : v ? 'Pagadas' : 'Sin pagar'}
           </button>
         ))}
       </div>
       <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-        {isLoading ? <div className="flex justify-center py-12"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600" /></div> : (
+        {isLoading ? <div className="flex justify-center py-12"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-violet-600" /></div> : (
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>{['Usuario','Libro','Monto','Razon','Estado','Acciones'].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{h}</th>)}</tr>

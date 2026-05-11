@@ -5,7 +5,7 @@ import type { User } from '../../types';
 import { Plus, Edit, Trash2, ToggleLeft, ToggleRight } from 'lucide-react';
 
 const roleBadge = (role: string) => {
-  const map: Record<string, string> = { ADMIN: 'bg-red-100 text-red-700', LIBRARIAN: 'bg-sky-100 text-sky-700', READER: 'bg-emerald-100 text-emerald-700' };
+  const map: Record<string, string> = { ADMIN: 'bg-red-100 text-red-700', LIBRARIAN: 'bg-violet-100 text-violet-700', READER: 'bg-emerald-100 text-emerald-700' };
   return <span className={`px-2 py-0.5 text-xs rounded-full font-medium ${map[role] ?? ''}`}>{role}</span>;
 };
 
@@ -35,12 +35,12 @@ export default function UsersPage() {
     <div className="space-y-5">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-900">Gestion de Usuarios</h1>
-        <button onClick={openCreate} className="flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+        <button onClick={openCreate} className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-violet-950 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
           <Plus className="h-4 w-4" /> Nuevo Usuario
         </button>
       </div>
       <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-        {isLoading ? <div className="flex justify-center py-12"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600" /></div> : (
+        {isLoading ? <div className="flex justify-center py-12"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-violet-600" /></div> : (
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>{['Nombre','Email','Rol','Estado','Acciones'].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{h}</th>)}</tr>
@@ -58,7 +58,7 @@ export default function UsersPage() {
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex gap-1">
-                      <button onClick={() => openEdit(u)} className="p-1.5 text-sky-600 hover:bg-sky-50 rounded"><Edit className="h-4 w-4" /></button>
+                      <button onClick={() => openEdit(u)} className="p-1.5 text-violet-600 hover:bg-violet-50 rounded"><Edit className="h-4 w-4" /></button>
                       <button onClick={() => toggleMutation.mutate(u.id)} className="p-1.5 text-amber-600 hover:bg-amber-50 rounded">{u.active ? <ToggleRight className="h-4 w-4" /> : <ToggleLeft className="h-4 w-4" />}</button>
                       <button onClick={() => { if (confirm('Eliminar usuario?')) deleteMutation.mutate(u.id); }} className="p-1.5 text-red-600 hover:bg-red-50 rounded"><Trash2 className="h-4 w-4" /></button>
                     </div>
@@ -87,11 +87,11 @@ export default function UsersPage() {
               <button onClick={() => setShowModal(false)} className="text-gray-400 hover:text-gray-600 text-xl">&times;</button>
             </div>
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
-              <div><label className="text-sm font-medium text-gray-700">Nombre *</label><input required value={form.name} onChange={e => setForm(f => ({...f, name: e.target.value}))} className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500" /></div>
-              <div><label className="text-sm font-medium text-gray-700">Email *</label><input required type="email" value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500" /></div>
-              <div><label className="text-sm font-medium text-gray-700">{editing ? 'Nueva contrasena (dejar vacio para no cambiar)' : 'Contrasena *'}</label><input type="password" required={!editing} value={form.password} onChange={e => setForm(f => ({...f, password: e.target.value}))} className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500" /></div>
+              <div><label className="text-sm font-medium text-gray-700">Nombre *</label><input required value={form.name} onChange={e => setForm(f => ({...f, name: e.target.value}))} className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400" /></div>
+              <div><label className="text-sm font-medium text-gray-700">Email *</label><input required type="email" value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400" /></div>
+              <div><label className="text-sm font-medium text-gray-700">{editing ? 'Nueva contrasena (dejar vacio para no cambiar)' : 'Contrasena *'}</label><input type="password" required={!editing} value={form.password} onChange={e => setForm(f => ({...f, password: e.target.value}))} className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400" /></div>
               <div><label className="text-sm font-medium text-gray-700">Rol *</label>
-                <select value={form.role} onChange={e => setForm(f => ({...f, role: e.target.value}))} className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500">
+                <select value={form.role} onChange={e => setForm(f => ({...f, role: e.target.value}))} className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">
                   <option value="READER">Lector</option>
                   <option value="LIBRARIAN">Bibliotecario</option>
                   <option value="ADMIN">Administrador</option>
@@ -99,7 +99,7 @@ export default function UsersPage() {
               </div>
               <div className="flex gap-3 pt-2">
                 <button type="button" onClick={() => setShowModal(false)} className="flex-1 py-2 border border-gray-300 rounded-lg text-sm font-medium hover:bg-gray-50">Cancelar</button>
-                <button type="submit" disabled={saveMutation.isPending} className="flex-1 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-lg text-sm font-medium disabled:opacity-60">{saveMutation.isPending ? 'Guardando...' : 'Guardar'}</button>
+                <button type="submit" disabled={saveMutation.isPending} className="flex-1 py-2 bg-amber-500 hover:bg-amber-600 text-violet-950 text-white rounded-lg text-sm font-medium disabled:opacity-60">{saveMutation.isPending ? 'Guardando...' : 'Guardar'}</button>
               </div>
             </form>
           </div>

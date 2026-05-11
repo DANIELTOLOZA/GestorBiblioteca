@@ -19,7 +19,7 @@ function StatCard({ label, value, icon: Icon, color }: { label: string; value: n
 export default function DashboardPage() {
   const { data: stats, isLoading } = useQuery({ queryKey: ['dashboard-stats'], queryFn: getDashboardStats, refetchInterval: 30000 });
 
-  if (isLoading) return <div className="flex justify-center py-20"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-sky-600" /></div>;
+  if (isLoading) return <div className="flex justify-center py-20"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-violet-600" /></div>;
 
   return (
     <div className="space-y-6">
@@ -28,7 +28,7 @@ export default function DashboardPage() {
         <p className="text-gray-500">Resumen general del sistema Labrynth Book</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        <StatCard label="Total Libros" value={stats?.totalBooks ?? 0} icon={BookOpen} color="bg-sky-500" />
+        <StatCard label="Total Libros" value={stats?.totalBooks ?? 0} icon={BookOpen} color="bg-violet-500" />
         <StatCard label="Disponibles" value={stats?.availableBooks ?? 0} icon={BookOpen} color="bg-emerald-500" />
         <StatCard label="Usuarios" value={stats?.totalUsers ?? 0} icon={Users} color="bg-violet-500" />
         <StatCard label="Prestamos Activos" value={stats?.activeLoans ?? 0} icon={BookMarked} color="bg-amber-500" />

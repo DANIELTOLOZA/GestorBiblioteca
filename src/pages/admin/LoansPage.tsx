@@ -6,7 +6,7 @@ import { getBooks } from '../../api/booksApi';
 import { Plus, RotateCcw } from 'lucide-react';
 
 const statusBadge = (status: string) => {
-  const map: Record<string, string> = { ACTIVE: 'bg-sky-100 text-sky-700', RETURNED: 'bg-emerald-100 text-emerald-700', OVERDUE: 'bg-red-100 text-red-700' };
+  const map: Record<string, string> = { ACTIVE: 'bg-violet-100 text-violet-700', RETURNED: 'bg-emerald-100 text-emerald-700', OVERDUE: 'bg-red-100 text-red-700' };
   const labels: Record<string, string> = { ACTIVE: 'Activo', RETURNED: 'Devuelto', OVERDUE: 'Vencido' };
   return <span className={`px-2 py-0.5 text-xs rounded-full font-medium ${map[status]}`}>{labels[status] ?? status}</span>;
 };
@@ -41,20 +41,20 @@ export default function LoansPage() {
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-900">Gestion de Prestamos</h1>
         <button onClick={() => { setForm({ userId: '', bookId: '', dueDate: '' }); setShowModal(true); }}
-          className="flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-violet-950 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
           <Plus className="h-4 w-4" /> Nuevo Prestamo
         </button>
       </div>
       <div className="flex gap-3">
         {['', 'ACTIVE', 'RETURNED', 'OVERDUE'].map(s => (
           <button key={s} onClick={() => { setStatus(s); setPage(0); }}
-            className={`px-3 py-1.5 text-sm rounded-lg font-medium transition-colors ${status === s ? 'bg-sky-600 text-white' : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'}`}>
+            className={`px-3 py-1.5 text-sm rounded-lg font-medium transition-colors ${status === s ? 'bg-violet-600 text-white' : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'}`}>
             {s === '' ? 'Todos' : s === 'ACTIVE' ? 'Activos' : s === 'RETURNED' ? 'Devueltos' : 'Vencidos'}
           </button>
         ))}
       </div>
       <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-        {isLoading ? <div className="flex justify-center py-12"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600" /></div> : (
+        {isLoading ? <div className="flex justify-center py-12"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-violet-600" /></div> : (
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>{['Usuario','Libro','Fecha Prestamo','Fecha Limite','Devolucion','Estado','Acciones'].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{h}</th>)}</tr>
@@ -101,24 +101,24 @@ export default function LoansPage() {
             </div>
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               <div><label className="text-sm font-medium text-gray-700">Usuario *</label>
-                <select required value={form.userId} onChange={e => setForm(f => ({...f, userId: e.target.value}))} className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500">
+                <select required value={form.userId} onChange={e => setForm(f => ({...f, userId: e.target.value}))} className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">
                   <option value="">Seleccionar usuario...</option>
                   {users?.content.map(u => <option key={u.id} value={u.id}>{u.name} ({u.email})</option>)}
                 </select>
               </div>
               <div><label className="text-sm font-medium text-gray-700">Libro *</label>
-                <select required value={form.bookId} onChange={e => setForm(f => ({...f, bookId: e.target.value}))} className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500">
+                <select required value={form.bookId} onChange={e => setForm(f => ({...f, bookId: e.target.value}))} className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">
                   <option value="">Seleccionar libro...</option>
                   {books?.content.filter(b => b.availableCopies > 0).map(b => <option key={b.id} value={b.id}>{b.title} ({b.availableCopies} disponibles)</option>)}
                 </select>
               </div>
               <div><label className="text-sm font-medium text-gray-700">Fecha limite *</label>
-                <input type="date" required min={minDate.toISOString().split('T')[0]} value={form.dueDate} onChange={e => setForm(f => ({...f, dueDate: e.target.value}))} className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500" />
+                <input type="date" required min={minDate.toISOString().split('T')[0]} value={form.dueDate} onChange={e => setForm(f => ({...f, dueDate: e.target.value}))} className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400" />
               </div>
               {createMutation.isError && <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded">Error al crear el prestamo. Verifica que el libro este disponible.</p>}
               <div className="flex gap-3 pt-2">
                 <button type="button" onClick={() => setShowModal(false)} className="flex-1 py-2 border border-gray-300 rounded-lg text-sm font-medium hover:bg-gray-50">Cancelar</button>
-                <button type="submit" disabled={createMutation.isPending} className="flex-1 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-lg text-sm font-medium disabled:opacity-60">{createMutation.isPending ? 'Guardando...' : 'Registrar'}</button>
+                <button type="submit" disabled={createMutation.isPending} className="flex-1 py-2 bg-amber-500 hover:bg-amber-600 text-violet-950 text-white rounded-lg text-sm font-medium disabled:opacity-60">{createMutation.isPending ? 'Guardando...' : 'Registrar'}</button>
               </div>
             </form>
           </div>
