@@ -12,7 +12,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import com.biblioteca.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/loans")
