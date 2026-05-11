@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: biblioteca-backend
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: update
+      - key: SPRING_SQL_INIT_MODE
+        value: always
+      - key: SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION
+        value: true
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRATION
+        value: 86400000
+      - key: ALLOWED_ORIGINS
+        value: https://danieltoloza.github.io,http://localhost:5173
+
+databases:
+  - name: biblioteca-db
+    plan: free
+    databaseName: biblioteca_db
+    user: biblioteca
