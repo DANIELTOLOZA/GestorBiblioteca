@@ -35,8 +35,8 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-900 to-sky-700 px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/10 mb-4">
-            <Library className="h-8 w-8 text-white" />
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full overflow-hidden border-4 border-white/30 mb-4 shadow-xl">
+            <img src="/lady-labrynth.jpg" alt="Labrynth Book" className="w-full h-full object-cover object-top" />
           </div>
           <h1 className="text-3xl font-bold text-white">Labrynth Book</h1>
           <p className="text-sky-200 mt-1">Ingresa tus credenciales para continuar</p>

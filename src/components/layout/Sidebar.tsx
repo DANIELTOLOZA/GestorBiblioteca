@@ -38,8 +38,8 @@ export default function Sidebar() {
 
   return (
     <aside className="flex flex-col w-64 min-h-screen bg-sky-900 text-white">
-      <div className="flex items-center gap-2 px-6 py-5 border-b border-sky-800">
-        <Library className="h-7 w-7 text-sky-300" />
+      <div className="flex items-center gap-3 px-4 py-4 border-b border-sky-800">
+        <img src="/lady-labrynth.jpg" alt="Labrynth Book" className="h-10 w-10 rounded-full object-cover object-top border-2 border-sky-400" />
         <span className="text-xl font-bold tracking-tight">Labrynth Book</span>
       </div>
       <div className="px-4 py-4 border-b border-sky-800">
