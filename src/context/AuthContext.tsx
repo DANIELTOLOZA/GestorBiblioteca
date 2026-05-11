@@ -1,4 +1,4 @@
-﻿import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+﻿import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import type { AuthData, Role } from '../types';
 import { login as apiLogin } from '../api/authApi';
 

@@ -11,7 +11,7 @@ const statusBadge = (status: string) => {
 
 export default function MyReservationsPage() {
   const qc = useQueryClient();
-  const [page, setPage] = useState(0);
+  const [page] = useState(0);
   const { data, isLoading } = useQuery({ queryKey: ['my-reservations', page], queryFn: () => getMyReservations(page) });
   const cancelMutation = useMutation({ mutationFn: cancelReservation, onSuccess: () => qc.invalidateQueries({ queryKey: ['my-reservations'] }) });
 

@@ -38,7 +38,7 @@ export default function LoginPage() {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/10 mb-4">
             <Library className="h-8 w-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-white">Sistema Biblioteca</h1>
+          <h1 className="text-3xl font-bold text-white">Labrynth Book</h1>
           <p className="text-sky-200 mt-1">Ingresa tus credenciales para continuar</p>
         </div>
         <div className="bg-white rounded-2xl shadow-xl p-8">

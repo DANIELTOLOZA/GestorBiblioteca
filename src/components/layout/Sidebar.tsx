@@ -40,7 +40,7 @@ export default function Sidebar() {
     <aside className="flex flex-col w-64 min-h-screen bg-sky-900 text-white">
       <div className="flex items-center gap-2 px-6 py-5 border-b border-sky-800">
         <Library className="h-7 w-7 text-sky-300" />
-        <span className="text-xl font-bold tracking-tight">Biblioteca</span>
+        <span className="text-xl font-bold tracking-tight">Labrynth Book</span>
       </div>
       <div className="px-4 py-4 border-b border-sky-800">
         <p className="text-xs text-sky-400 uppercase tracking-wider">Bienvenido</p>
