@@ -23,8 +23,8 @@ export default function CategoriesPage() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ['categories'] })
   });
 
-  const openCreate = () => { setEditing(null); setForm({ name: '', description: '', deweyCode: '' }); setShowModal(true); };
-  const openEdit = (c: Category) => { setEditing(c); setForm({ name: c.name, description: c.description ?? '', deweyCode: c.deweyCode ?? '' }); setShowModal(true); };
+  const openCreate = () => { saveMutation.reset(); setEditing(null); setForm({ name: '', description: '', deweyCode: '' }); setShowModal(true); };
+  const openEdit = (c: Category) => { saveMutation.reset(); setEditing(c); setForm({ name: c.name, description: c.description ?? '', deweyCode: c.deweyCode ?? '' }); setShowModal(true); };
 
   const filtered = data?.filter(c => c.name.toLowerCase().includes(search.toLowerCase()) || (c.deweyCode ?? '').includes(search));
 

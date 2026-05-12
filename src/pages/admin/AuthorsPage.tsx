@@ -23,8 +23,8 @@ export default function AuthorsPage() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ['authors'] })
   });
 
-  const openCreate = () => { setEditing(null); setForm({ name: '', bio: '' }); setShowModal(true); };
-  const openEdit = (a: Author) => { setEditing(a); setForm({ name: a.name, bio: a.bio ?? '' }); setShowModal(true); };
+  const openCreate = () => { saveMutation.reset(); setEditing(null); setForm({ name: '', bio: '' }); setShowModal(true); };
+  const openEdit = (a: Author) => { saveMutation.reset(); setEditing(a); setForm({ name: a.name, bio: a.bio ?? '' }); setShowModal(true); };
 
   const filtered = data?.filter(a => a.name.toLowerCase().includes(search.toLowerCase()));
 
