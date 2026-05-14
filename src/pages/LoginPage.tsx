@@ -1,7 +1,12 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Eye, EyeOff, X, Mail } from 'lucide-react';
+import ReCAPTCHA from 'react-google-recaptcha';
+
+const RECAPTCHA_SITE_KEY =
+  import.meta.env.VITE_RECAPTCHA_SITE_KEY ||
+  '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
 
 type View = 'login' | 'register';
 
@@ -18,6 +23,8 @@ export default function LoginPage() {
   const [showRegPwd, setShowRegPwd] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const captchaRef = useRef<ReCAPTCHA>(null);
 
   const { login, register, user } = useAuth();
   const navigate = useNavigate();
@@ -26,6 +33,7 @@ export default function LoginPage() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!captchaToken) { setError('Completa la verificacion CAPTCHA.'); return; }
     setError(''); setLoading(true);
     try {
       await login(loginForm.email, loginForm.password);
@@ -33,6 +41,8 @@ export default function LoginPage() {
       navigate(stored.role === 'READER' ? '/catalog' : '/dashboard', { replace: true });
     } catch {
       setError('Credenciales incorrectas. Verifica tu email y contrasena.');
+      captchaRef.current?.reset();
+      setCaptchaToken(null);
     } finally { setLoading(false); }
   };
 
@@ -100,8 +110,17 @@ export default function LoginPage() {
                     </button>
                   </div>
                 </div>
+                <div className="flex justify-center">
+                  <ReCAPTCHA
+                    ref={captchaRef}
+                    sitekey={RECAPTCHA_SITE_KEY}
+                    theme="dark"
+                    onChange={token => setCaptchaToken(token)}
+                    onExpired={() => setCaptchaToken(null)}
+                  />
+                </div>
                 {error && <p className="text-sm text-red-300 bg-red-900/30 border border-red-500/30 px-3 py-2 rounded-lg">{error}</p>}
-                <button type="submit" disabled={loading}
+                <button type="submit" disabled={loading || !captchaToken}
                   className="w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-violet-950 font-bold rounded-lg transition-colors disabled:opacity-60 shadow-lg shadow-amber-500/20">
                   {loading ? 'Ingresando...' : 'Iniciar Sesion'}
                 </button>
